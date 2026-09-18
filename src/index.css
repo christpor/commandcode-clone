@@ -1,32 +1,8 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 268 70% 59%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 268 70% 59%;
-  }
-}
-
 html, body {
   background-color: #000000;
-  color: #ededed;
+  color: #fafafa;
   overflow-x: hidden;
   font-family: var(--font-geist-sans, system-ui, -apple-system, sans-serif);
 }
@@ -52,21 +28,24 @@ html, body {
   animation-play-state: paused;
 }
 
-.animate-marquee-reverse {
-  display: flex;
-  width: max-content;
-  animation: marquee-reverse 35s linear infinite;
+/* Custom dashed border rule matching commandcode.ai */
+.custom-dashed {
+  --dash-color: var(--border, #222225);
+  --dash-length: 5px;
+  --dash-gap: 7px;
+  border-left: 1px dashed transparent;
+  border-right: 1px dashed transparent;
+  border-image: repeating-linear-gradient(
+    to bottom,
+    var(--dash-color) 0,
+    var(--dash-color) var(--dash-length),
+    transparent var(--dash-length),
+    transparent calc(var(--dash-length) + var(--dash-gap))
+  ) 1;
 }
 
-.animate-marquee-reverse:hover {
-  animation-play-state: paused;
-}
-
-/* Shimmer and Glow effects */
-.glow-purple {
-  box-shadow: 0 0 50px -10px rgba(140, 78, 221, 0.45);
-}
-
-.glow-subtle {
-  box-shadow: 0 0 25px -5px rgba(255, 255, 255, 0.08);
+/* Swirl particle effect */
+.swirl-bg {
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
 }

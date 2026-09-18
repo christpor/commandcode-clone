@@ -1,15 +1,20 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
-import { AnnouncementBanner } from './components/common/AnnouncementBanner';
 import { Navbar } from './components/common/Navbar';
 import { HeroSection } from './features/hero/HeroSection';
-import { ModelMarquee } from './features/models/ModelMarquee';
-import { FeatureGrid } from './features/features/FeatureGrid';
-import { BenchmarkComparison } from './features/value-stack/BenchmarkComparison';
-import { TasteSection } from './features/taste/TasteSection';
-import { PricingSection } from './features/pricing/PricingSection';
+import { FeatureSplitExplorer } from './features/features/FeatureSplitExplorer';
+import { SloppyVsTaste } from './features/contrast/SloppyVsTaste';
+import { SubscribeGoat } from './features/goat/SubscribeGoat';
+import { IndustrialGrid } from './features/industrial/IndustrialGrid';
 import { FAQSection } from './features/faq/FAQSection';
+import { ChangelogSection } from './features/changelog/ChangelogSection';
+import { PreFooterCTA } from './components/common/PreFooterCTA';
 import { Footer } from './components/common/Footer';
+
+// Reusable vertical dashed spacer matching commandcode.ai architecture
+const DashedSpacer = () => (
+  <div className="h-[80px] w-[90vw] md:w-[80vw] max-w-[1189px] border-l border-r border-[#222225] custom-dashed mx-auto" />
+);
 
 export function App() {
   useEffect(() => {
@@ -32,17 +37,24 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-purple-600 selection:text-white flex flex-col items-center w-full">
-      <AnnouncementBanner />
+    <div className="min-h-screen bg-black text-[#fafafa] selection:bg-[#556af3] selection:text-white flex flex-col items-center w-full overflow-x-hidden">
       <Navbar />
       <main className="w-full flex flex-col items-center">
         <HeroSection />
-        <ModelMarquee />
-        <FeatureGrid />
-        <BenchmarkComparison />
-        <TasteSection />
-        <PricingSection />
+        <DashedSpacer />
+        <FeatureSplitExplorer />
+        <DashedSpacer />
+        <SloppyVsTaste />
+        <DashedSpacer />
+        <SubscribeGoat />
+        <DashedSpacer />
+        <IndustrialGrid />
+        <DashedSpacer />
         <FAQSection />
+        <DashedSpacer />
+        <ChangelogSection />
+        <DashedSpacer />
+        <PreFooterCTA />
       </main>
       <Footer />
     </div>

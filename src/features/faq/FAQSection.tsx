@@ -10,16 +10,12 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="w-full py-24 px-4 max-w-[1000px] mx-auto border-b border-border">
-      <div className="flex flex-col items-center text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-400 font-mono mb-4">
-          <span className="text-purple-400 font-semibold">//</span>
-          <span>clarity upfront</span>
-        </div>
-        <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
+    <section id="faq" className="w-[90vw] md:w-[80vw] max-w-[1189px] mx-auto border border-[#222225] border-t-0 border-b-0 p-8 sm:p-14 bg-black">
+      <div className="flex flex-col mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3 font-sans">
           Questions, answered.
         </h2>
-        <p className="text-sm sm:text-base text-neutral-400 mt-3 max-w-md">
+        <p className="text-xs sm:text-sm text-neutral-400 max-w-md">
           Everything that usually comes up before a team installs. Still curious? Read the{' '}
           <a
             href="https://commandcode.ai/docs"
@@ -42,7 +38,7 @@ export const FAQSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="divide-y divide-neutral-800/80 border-y border-neutral-800/80">
+      <div className="divide-y divide-[#222225] border-y border-[#222225]">
         {FAQS.map((faq, idx) => {
           const isOpen = openIdx === idx;
           return (
@@ -50,15 +46,15 @@ export const FAQSection: React.FC = () => {
               <button
                 type="button"
                 onClick={() => toggle(idx)}
-                className="w-full flex items-center justify-between gap-6 py-6 text-left cursor-pointer group"
+                className="w-full flex items-center justify-between gap-6 py-5 sm:py-6 text-left cursor-pointer group"
                 aria-expanded={isOpen}
               >
                 <span className="text-sm sm:text-base font-semibold text-neutral-200 group-hover:text-white transition-colors">
                   {faq.q}
                 </span>
                 <ChevronDown
-                  className={`w-5 h-5 text-neutral-500 transition-transform duration-200 shrink-0 group-hover:text-purple-400 ${
-                    isOpen ? 'rotate-180 text-purple-400' : ''
+                  className={`w-5 h-5 text-neutral-500 transition-transform duration-200 shrink-0 group-hover:text-white ${
+                    isOpen ? 'rotate-180 text-white' : ''
                   }`}
                 />
               </button>
