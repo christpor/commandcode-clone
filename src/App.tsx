@@ -1,20 +1,36 @@
 import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Lenis from 'lenis';
 import { Navbar } from './components/common/Navbar';
-import { HeroSection } from './features/hero/HeroSection';
-import { FeatureSplitExplorer } from './features/features/FeatureSplitExplorer';
-import { SloppyVsTaste } from './features/contrast/SloppyVsTaste';
-import { SubscribeGoat } from './features/goat/SubscribeGoat';
-import { IndustrialGrid } from './features/industrial/IndustrialGrid';
-import { FAQSection } from './features/faq/FAQSection';
-import { ChangelogSection } from './features/changelog/ChangelogSection';
-import { PreFooterCTA } from './components/common/PreFooterCTA';
 import { Footer } from './components/common/Footer';
+import { HomePage } from './pages/HomePage';
+import { FeaturesPage } from './pages/FeaturesPage';
+import { PricingPage } from './pages/PricingPage';
+import { AboutPage } from './pages/AboutPage';
+import { ChangelogPage } from './pages/ChangelogPage';
+import { ContactPage } from './pages/ContactPage';
 
-// Reusable vertical dashed spacer matching commandcode.ai architecture
-const DashedSpacer = () => (
-  <div className="h-[80px] w-[90vw] md:w-[80vw] max-w-[1189px] border-l border-r border-[#222225] custom-dashed mx-auto" />
-);
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const el = document.getElementById(id);
+        if (el) {
+          const yOffset = -100;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 export function App() {
   useEffect(() => {
@@ -37,27 +53,24 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-[#fafafa] selection:bg-[#556af3] selection:text-white flex flex-col items-center w-full overflow-x-hidden">
-      <Navbar />
-      <main className="w-full flex flex-col items-center">
-        <HeroSection />
-        <DashedSpacer />
-        <FeatureSplitExplorer />
-        <DashedSpacer />
-        <SloppyVsTaste />
-        <DashedSpacer />
-        <SubscribeGoat />
-        <DashedSpacer />
-        <IndustrialGrid />
-        <DashedSpacer />
-        <FAQSection />
-        <DashedSpacer />
-        <ChangelogSection />
-        <DashedSpacer />
-        <PreFooterCTA />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-black text-[#fafafa] selection:bg-[#556af3] selection:text-white flex flex-col items-center w-full overflow-x-hidden pt-[85px]">
+        <Navbar />
+        <main className="w-full flex flex-col items-center flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/changelog" element={<ChangelogPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

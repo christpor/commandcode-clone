@@ -1,24 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CommandCodeLogo } from './Logo';
 
 export const Footer: React.FC = () => {
   const footerLinks = [
-    { label: 'About', href: 'https://commandcode.ai/about', color: 'from-[#C7B8F5] to-[#F3B5D2]' },
-    { label: 'Docs', href: 'https://commandcode.ai/docs', color: 'from-[#F3B5D2] to-[#AFCDF6]' },
-    { label: 'Developers', href: 'https://commandcode.ai/developers', color: 'from-[#A7EADC] to-[#F5B6A6]' },
-    { label: 'Changelog', href: 'https://commandcode.ai/changelog', color: 'from-[#C7B8F5] to-[#AFCDF6]' },
-    { label: 'Pricing', href: 'https://commandcode.ai/pricing', color: 'from-[#F3B5D2] to-[#A7EADC]' },
-    { label: 'Taste', href: 'https://commandcode.ai/docs/taste', color: 'from-[#AFCDF6] to-[#C7B8F5]' },
-    { label: 'Brand', href: 'https://commandcode.ai/brand', color: 'from-[#F5B6A6] to-[#F3B5D2]' },
-    { label: 'Security', href: 'https://commandcode.ai/security', color: 'from-[#A7EADC] to-[#AFCDF6]' },
-    { label: 'Desktop', href: 'https://commandcode.ai/desktop', color: 'from-[#C7B8F5] to-[#F5B6A6]' },
-    { label: 'Careers', href: 'https://commandcode.ai/careers', color: 'from-[#F3B5D2] to-[#C7B8F5]' },
-    { label: 'Blog', href: 'https://commandcode.ai/blog', color: 'from-[#AFCDF6] to-[#F5B6A6]' },
-    { label: 'Terms', href: 'https://commandcode.ai/terms', color: 'from-[#A7EADC] to-[#F3B5D2]' },
-    { label: 'Learn', href: 'https://commandcode.ai/learn', color: 'from-[#C7B8F5] to-[#AFCDF6]' },
-    { label: 'Skills', href: 'https://commandcode.ai/skills', color: 'from-[#F5B6A6] to-[#A7EADC]' },
-    { label: 'Models', href: 'https://commandcode.ai/models', color: 'from-[#AFCDF6] to-[#C7B8F5]' },
-    { label: 'Privacy', href: 'https://commandcode.ai/privacy', color: 'from-[#F3B5D2] to-[#AFCDF6]' },
+    { label: 'About', to: '/about', isInternal: true, color: 'from-[#C7B8F5] to-[#F3B5D2]' },
+    { label: 'Features', to: '/features', isInternal: true, color: 'from-[#F3B5D2] to-[#AFCDF6]' },
+    { label: 'Pricing', to: '/pricing', isInternal: true, color: 'from-[#F3B5D2] to-[#A7EADC]' },
+    { label: 'Changelog', to: '/changelog', isInternal: true, color: 'from-[#C7B8F5] to-[#AFCDF6]' },
+    { label: 'Taste', to: '/features#taste', isInternal: true, color: 'from-[#AFCDF6] to-[#C7B8F5]' },
+    { label: 'Run Modes', to: '/features#modes', isInternal: true, color: 'from-[#F5B6A6] to-[#F3B5D2]' },
+    { label: 'MCP & Skills', to: '/features#mcp', isInternal: true, color: 'from-[#A7EADC] to-[#AFCDF6]' },
+    { label: 'Models', to: '/features#models', isInternal: true, color: 'from-[#AFCDF6] to-[#C7B8F5]' },
+    { label: 'Design /dx', to: '/features#design-partner', isInternal: true, color: 'from-[#C7B8F5] to-[#F5B6A6]' },
+    { label: 'Studio', to: '/features#studio-web', isInternal: true, color: 'from-[#F3B5D2] to-[#C7B8F5]' },
+    { label: 'Contact', to: '/contact', isInternal: true, color: 'from-[#AFCDF6] to-[#F5B6A6]' },
+    { label: 'Docs', href: 'https://commandcode.ai/docs', isInternal: false, color: 'from-[#F3B5D2] to-[#AFCDF6]' },
+    { label: 'Developers', to: '/features#cli-experience', isInternal: true, color: 'from-[#A7EADC] to-[#F5B6A6]' },
+    { label: 'Security', to: '/about', isInternal: true, color: 'from-[#A7EADC] to-[#AFCDF6]' },
+    { label: 'Careers', to: '/about', isInternal: true, color: 'from-[#F3B5D2] to-[#C7B8F5]' },
+    { label: 'Terms & Privacy', to: '/about', isInternal: true, color: 'from-[#F3B5D2] to-[#AFCDF6]' },
   ];
 
   return (
@@ -26,21 +27,41 @@ export const Footer: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#222225]">
         {/* Left Links Matrix (Col-span-7) */}
         <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 border-b lg:border-b-0">
-          {footerLinks.map((item, idx) => (
-            <a
-              key={idx}
-              href={item.href}
-              target="_blank"
-              rel="noreferrer"
-              className="relative p-5 sm:p-6 border-b border-r border-[#222225] text-sm text-[#a1a1aa] hover:text-white transition-colors group overflow-hidden"
-            >
-              <span className="relative z-10 font-sans">{item.label}</span>
-              {/* Subtle hover gradient wash */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 pointer-events-none">
-                <div className={`w-full h-full bg-gradient-to-r ${item.color}`} />
-              </div>
-            </a>
-          ))}
+          {footerLinks.map((item, idx) => {
+            const content = (
+              <>
+                <span className="relative z-10 font-sans">{item.label}</span>
+                {/* Subtle hover gradient wash */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 pointer-events-none">
+                  <div className={`w-full h-full bg-gradient-to-r ${item.color}`} />
+                </div>
+              </>
+            );
+
+            if (item.isInternal && item.to) {
+              return (
+                <Link
+                  key={idx}
+                  to={item.to}
+                  className="relative p-5 sm:p-6 border-b border-r border-[#222225] text-sm text-[#a1a1aa] hover:text-white transition-colors group overflow-hidden block"
+                >
+                  {content}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                key={idx}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="relative p-5 sm:p-6 border-b border-r border-[#222225] text-sm text-[#a1a1aa] hover:text-white transition-colors group overflow-hidden block"
+              >
+                {content}
+              </a>
+            );
+          })}
         </div>
 
         {/* Center Square with Swirl Matrix & Logo (Col-span-4) */}
@@ -49,9 +70,9 @@ export const Footer: React.FC = () => {
           <div className="absolute inset-0 swirl-bg opacity-30 group-hover:opacity-40 transition-opacity" />
           <div className="absolute inset-0 bg-radial from-transparent to-black pointer-events-none" />
 
-          <div className="relative z-10 text-center flex flex-col items-center">
+          <Link to="/" className="relative z-10 text-center flex flex-col items-center group-hover:scale-105 transition-transform">
             <CommandCodeLogo className="h-8 w-auto text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
-          </div>
+          </Link>
         </div>
 
         {/* Far Right Vertical Social Column (Col-span-1) */}
@@ -71,7 +92,7 @@ export const Footer: React.FC = () => {
 
           {/* GitHub */}
           <a
-            href="https://github.com/CommandCodeAI"
+            href="https://github.com/christpor/commandcode-clone"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
